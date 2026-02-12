@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.13' and sys_platform == 'linux'",
@@ -1485,6 +1485,8 @@ version = "0.2.8"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
+    { name = "huggingface-hub" },
+    { name = "neo4j" },
     { name = "networkx", version = "3.4.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "networkx", version = "3.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
@@ -1492,7 +1494,10 @@ dependencies = [
     { name = "openai" },
     { name = "pydantic" },
     { name = "python-dotenv" },
+    { name = "qdrant-client" },
     { name = "requests" },
+    { name = "serpapi" },
+    { name = "tavily" },
     { name = "tiktoken" },
 ]
 
@@ -1598,9 +1603,11 @@ requires-dist = [
     { name = "gradio", marker = "extra == 'evaluation'", specifier = ">=4.0.0,<5.0.0" },
     { name = "hello-agents", extras = ["memory", "rag"], marker = "extra == 'memory-rag'" },
     { name = "hello-agents", extras = ["search", "memory-rag", "protocols", "evaluation", "rl"], marker = "extra == 'all'" },
+    { name = "huggingface-hub", specifier = ">=0.35.3" },
     { name = "huggingface-hub", marker = "extra == 'evaluation'", specifier = ">=0.20.0,<1.0.0" },
     { name = "markitdown", marker = "extra == 'rag'", specifier = ">=0.0.1" },
     { name = "matplotlib", marker = "extra == 'evaluation'", specifier = ">=3.7.0,<4.0.0" },
+    { name = "neo4j", specifier = ">=5.0.0" },
     { name = "neo4j", marker = "extra == 'memory'", specifier = ">=5.0.0" },
     { name = "networkx", specifier = ">=2.6.0,<4.0.0" },
     { name = "numpy", specifier = ">=2.0.0,<3.0.0" },
@@ -1611,13 +1618,16 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.0.0,<3.0.0" },
     { name = "pypdf", marker = "extra == 'rag'", specifier = ">=3.9.0" },
     { name = "python-dotenv", specifier = ">=0.19.0,<2.0.0" },
-    { name = "qdrant-client", marker = "extra == 'memory'", specifier = ">=1.9.0,<1.16.0" },
+    { name = "qdrant-client", specifier = ">=1.15.1" },
+    { name = "qdrant-client", marker = "extra == 'memory'", specifier = ">=1.9.0" },
     { name = "requests", specifier = ">=2.25.0,<3.0.0" },
     { name = "scikit-learn", marker = "extra == 'memory'", specifier = ">=1.0.0" },
     { name = "scikit-learn", marker = "extra == 'rag'", specifier = ">=1.0.0" },
     { name = "seaborn", marker = "extra == 'evaluation'", specifier = ">=0.12.0,<1.0.0" },
     { name = "sentence-transformers", marker = "extra == 'rag'", specifier = ">=2.2.0" },
+    { name = "serpapi", specifier = ">=0.1.5" },
     { name = "spacy", marker = "extra == 'memory'", specifier = ">=3.4.0" },
+    { name = "tavily", specifier = ">=1.1.0" },
     { name = "tavily-python", marker = "extra == 'search'", specifier = ">=0.7.12" },
     { name = "tensorboard", marker = "extra == 'rl'", specifier = ">=2.13.0" },
     { name = "tiktoken", specifier = ">=0.5.0" },
@@ -4537,6 +4547,18 @@ wheels = [
 ]
 
 [[package]]
+name = "serpapi"
+version = "0.1.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f0/fa/3fd8809287f3977a3e752bb88610e918d49cb1038b14f4bc51e13e594197/serpapi-0.1.5.tar.gz", hash = "sha256:b9707ed54750fdd2f62dc3a17c6a3fb7fa421dc37902fd65b2263c0ac765a1a5", size = 14191, upload-time = "2023-11-01T14:00:43.602Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/6a/21deade04100d64844e494353a5d65e7971fbdfddf78eb1f248423593ad0/serpapi-0.1.5-py2.py3-none-any.whl", hash = "sha256:6467b6adec1231059f754ccaa952b229efeaa8b9cae6e71f879703ec9e5bb3d1", size = 10966, upload-time = "2023-11-01T14:00:38.885Z" },
+]
+
+[[package]]
 name = "setuptools"
 version = "80.9.0"
 source = { registry = "https://pypi.org/simple" }
@@ -4753,6 +4775,16 @@ sdist = { url = "https://files.pythonhosted.org/packages/83/d3/803453b36afefb7c2
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl", hash = "sha256:e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5", size = 6299353, upload-time = "2025-04-27T18:04:59.103Z" },
 ]
+
+[[package]]
+name = "tavily"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/63/ba/cd74acdb0537a02fb5657afbd5fd5a27a298c85fc27f544912cc001377bb/tavily-1.1.0.tar.gz", hash = "sha256:7730bf10c925dc0d0d84f27a8979de842ecf88c2882183409addd855e27d8fab", size = 5081, upload-time = "2025-10-31T09:32:40.555Z" }
 
 [[package]]
 name = "tavily-python"
