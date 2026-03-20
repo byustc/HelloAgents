@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hello-agents"
-version = "0.2.8"
-description = "灵活、可扩展的多智能体框架 - 基于OpenAI原生API"
+version = "1.0.0"
+description = "生产级多智能体框架 - 工具响应协议、上下文工程、会话持久化、子代理机制、乐观锁、熔断器、Skills知识外化等16项核心能力"
 readme = "README.md"
 license = {text = "CC-BY-NC-SA-4.0"}
 authors = [
@@ -18,6 +18,7 @@ dependencies = [
     "requests>=2.25.0,<3.0.0",
     "python-dotenv>=0.19.0,<2.0.0",
     "pydantic>=2.0.0,<3.0.0",
+<<<<<<< HEAD
     # 基础工具库
     "beautifulsoup4>=4.9.0,<5.0.0",
     "numpy>=2.0.0,<3.0.0",
@@ -113,6 +114,12 @@ memory-rag = [
 # 全部功能（不含evaluation-bfcl，因其与numpy>=2.0冲突）
 all = [
     "hello-agents[search,memory-rag,protocols,evaluation,rl]",
+=======
+    "numpy>=2.0.0,<3.0.0",
+    "networkx>=2.6.0,<4.0.0",
+    "tiktoken>=0.5.0",
+    "pyyaml>=6.0.0",
+>>>>>>> 2570830a58823546ea41bd5a538d9c6ca1a5ed87
 ]
 
 [project.urls]
