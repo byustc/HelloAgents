@@ -122,6 +122,10 @@ all = [
 >>>>>>> 2570830a58823546ea41bd5a538d9c6ca1a5ed87
 ]
 
+[project.optional-dependencies]
+gemini = ["google-genai>=1.0.0"]
+anthropic = ["anthropic>=0.20.0"]
+
 [project.urls]
 Homepage = "https://github.com/jjyaoao/HelloAgents"
 Documentation = "https://github.com/jjyaoao/HelloAgents/blob/main/README.md"
